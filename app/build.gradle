@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.akhutornoy.bootstrap"
+        minSdkVersion 22
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def SEP = "_"
+            def projectName = rootProject.name
+            def flavor = variant.productFlavors[0] == null ? "" : variant.productFlavors[0].name
+            def buildType = variant.variantData.variantConfiguration.buildType.name
+            def version = variant.versionName
+            def versionCode = variant.versionCode
+            // name example 'Foundry_production_debug_v1.0_1.apk'
+            outputFileName = "${projectName}${SEP}${flavor}${SEP}${buildType}${SEP}v${version}${SEP}${versionCode}.apk"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        stage {
+            dimension "version"
+            applicationIdSuffix ".stage"
+        }
+        production {
+            dimension "version"
+            applicationIdSuffix ".production"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //android
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-rc01'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta03'
+
+    //Android KTX
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.fragment:fragment-ktx:1.1.0-rc04'
+
+    //Dagger
+    def dagger_version = '2.24'
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    //Tibmer
+    implementation 'com.github.ajalt:timberkt:1.5.1'
+
+    //DB Room
+    def room_version = '2.1.0'
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //Rest
+    def retrofit_version = '2.6.1'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.1.0'
+
+    //ViewPager dots indicator
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:3.0.3'
+
+    //Glide
+    def glide_version = '4.9.0'
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    //Tests
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

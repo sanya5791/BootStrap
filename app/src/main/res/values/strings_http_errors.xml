@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--mock errors -->
+    <string name="http_error_code">HTTP ErrorCode: %1$d.</string>
+    <string name="http_error_undefined">Undefined HTTP Error</string>
+
+    <string name="http_error_400">Your request was formatted incorrectly or missing required parameters.</string>
+    <string name="http_error_401">No API key found in request</string>
+    <string name="http_error_403">You weren\'t authorized to make your request; most likely this indicates an issue with your API Key.</string>
+    <string name="http_error_404">The particular GIF you are requesting was not found. This occurs, for example, if you request a GIF by an id that does not exist.</string>
+    <string name="http_error_429">Your API Key is making too many requests. Read about requesting a Production Key to upgrade your API Key rate limits.</string>
+</resources>

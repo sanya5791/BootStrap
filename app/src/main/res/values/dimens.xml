@@ -1,0 +1,19 @@
+<resources>
+    <dimen name="margin_smallest">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_big">24dp</dimen>
+    <dimen name="margin_huge">32dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+
+    <dimen name="padding_smallest">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_big">24dp</dimen>
+    <dimen name="padding_huge">32dp</dimen>
+    <dimen name="padding_48">48dp</dimen>
+
+    <dimen name="font_size_16">16sp</dimen>
+
+</resources>
